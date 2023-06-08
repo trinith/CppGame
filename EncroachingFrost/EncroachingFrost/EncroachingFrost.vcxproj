@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{9612dfd1-58f1-4368-b616-8df3f9acb447}</ProjectGuid>
+    <RootNamespace>EncroachingFrost</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <CustomBuildBeforeTargets>
+    </CustomBuildBeforeTargets>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\SBL\Repos\SBU_CppLevelUp_2023January\Project\Vendor\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\SBL\Repos\SBU_CppLevelUp_2023January\Project\Vendor\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>xcopy $(SolutionDir)Content\ $(OutDir)Content\ /E /Y
+xcopy $(SolutionDir)..\Vendor\SFML-2.5.1\bin\ $(OutDir) /E /Y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>-=| POST BUILD |=-</Message>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>rmdir $(OutDir)Content /Q/S</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Path.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Assets\AssetBank.h" />
+    <ClInclude Include="Assets\AssetLoader.h" />
+    <ClInclude Include="Assets\AssetManager.h" />
+    <ClInclude Include="Assets\SpriteSheet.h" />
+    <ClInclude Include="Controllers\CombatTextController.h" />
+    <ClInclude Include="Controllers\FirepitFlameAnimationController.h" />
+    <ClInclude Include="Controllers\FlamePowerController.h" />
+    <ClInclude Include="Controllers\PendingAbilityActionsController.h" />
+    <ClInclude Include="Controllers\PlayerAbilityCooldownController.h" />
+    <ClInclude Include="Controllers\PlayerAbilityQueueController.h" />
+    <ClInclude Include="Controllers\PlayerHealthController.h" />
+    <ClInclude Include="Controllers\PlayerInputController.h" />
+    <ClInclude Include="Controllers\PlayerMoveAbilityCancelController.h" />
+    <ClInclude Include="Controllers\PlayerMoveController.h" />
+    <ClInclude Include="Controllers\PlayerMoveFinalizeController.h" />
+    <ClInclude Include="Controllers\PlayerSkillActivationController.h" />
+    <ClInclude Include="Controllers\PlayerTargetController.h" />
+    <ClInclude Include="Controllers\PlayerUseInputController.h" />
+    <ClInclude Include="Drawing\DebugDraw.h" />
+    <ClInclude Include="Drawing\SpriteRenderer.h" />
+    <ClInclude Include="Entities\FirepitFlameEntity.h" />
+    <ClInclude Include="Entities\IGameEntity.h" />
+    <ClInclude Include="Entities\PlayerEntity.h" />
+    <ClInclude Include="Entities\TargetDummyEntity.h" />
+    <ClInclude Include="Game\Assert.h" />
+    <ClInclude Include="Game\ControllerBase.h" />
+    <ClInclude Include="Game\GameBase.h" />
+    <ClInclude Include="Game\GameTime.h" />
+    <ClInclude Include="Game\IController.h" />
+    <ClInclude Include="Game\IScene.h" />
+    <ClInclude Include="Game\IView.h" />
+    <ClInclude Include="Game\OptionalRef.h" />
+    <ClInclude Include="Game\SceneBase.h" />
+    <ClInclude Include="Game\SceneManager.h" />
+    <ClInclude Include="Game\ViewBase.h" />
+    <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Models\AbilityIconMap.h" />
+    <ClInclude Include="Models\AbilityRegistry.h" />
+    <ClInclude Include="Models\CombatTextItems.h" />
+    <ClInclude Include="Models\EntityAbilities.h" />
+    <ClInclude Include="Models\EntityAbilityCooldowns.h" />
+    <ClInclude Include="Models\EntityAbilityQueue.h" />
+    <ClInclude Include="Models\EntityAnimation.h" />
+    <ClInclude Include="Models\EntityBounds.h" />
+    <ClInclude Include="Models\EntityHitboxes.h" />
+    <ClInclude Include="Models\EntityReferenceList.h" />
+    <ClInclude Include="Models\EntityStats.h" />
+    <ClInclude Include="Models\FirepitFlameModel.h" />
+    <ClInclude Include="Models\PendingAbilityActions.h" />
+    <ClInclude Include="Models\PlayerModel.h" />
+    <ClInclude Include="Models\RenderCanvas.h" />
+    <ClInclude Include="Models\EntitySprites.h" />
+    <ClInclude Include="Models\TargetDummyModel.h" />
+    <ClInclude Include="Models\PlayerUseInputModel.h" />
+    <ClInclude Include="Models\TileMap.h" />
+    <ClInclude Include="Path.h" />
+    <ClInclude Include="ProjectGame.h" />
+    <ClInclude Include="Scenes\GameplayScene.h" />
+    <ClInclude Include="Vector2Utils.h" />
+    <ClInclude Include="Views\CombatTextView.h" />
+    <ClInclude Include="Views\FirepitFlamePowerView.h" />
+    <ClInclude Include="Views\GenericView.h" />
+    <ClInclude Include="Views\EntityShadowView.h" />
+    <ClInclude Include="Views\EntityView.h" />
+    <ClInclude Include="Views\PlayerAbilityCastView.h" />
+    <ClInclude Include="Views\PlayerAbilityInterfaceView.h" />
+    <ClInclude Include="Views\PlayerHealthView.h" />
+    <ClInclude Include="Views\PlayerPowerView.h" />
+    <ClInclude Include="Views\PlayerTargetView.h" />
+    <ClInclude Include="Views\ProgressBarViewBase.h" />
+    <ClInclude Include="Views\RenderCanvasView.h" />
+    <ClInclude Include="Views\TileMapView.h" />
+    <ClInclude Include="WindowManager.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

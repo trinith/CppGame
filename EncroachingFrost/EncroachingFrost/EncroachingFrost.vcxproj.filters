@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{fbbf01d0-835b-4ecd-995e-dd02cf8aebdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{62310bae-3c90-46cd-9189-fc3e05de349a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{ba40fc0e-c713-4546-a5fe-78cbd3b831cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{74bb1606-e7aa-440d-ab06-57c1d4488003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Views">
+      <UniqueIdentifier>{431de000-59a2-49d8-aac0-0e8c9f81db03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{8d1c00de-5294-4cc2-9c6e-3fb936bb9d24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers">
+      <UniqueIdentifier>{f466878b-32a7-423d-9d7f-60a5b9fb9518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drawing">
+      <UniqueIdentifier>{7c4b276f-9ea9-42b3-b6ba-0d75f1d6adfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{2e9394a6-dd83-4ad6-aea9-a184e520dea9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Path.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\GameTime.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\IController.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\IView.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameBase.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\IScene.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SceneBase.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SceneManager.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\OptionalRef.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Assert.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectGame.h" />
+    <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="Assets\SpriteSheet.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h" />
+    <ClInclude Include="Assets\AssetBank.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\PlayerModel.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\GameplayScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerInputController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\EntityView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ViewBase.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ControllerBase.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\AssetManager.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\AssetLoader.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\GenericView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\RenderCanvas.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\RenderCanvasView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerMoveController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerMoveFinalizeController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\TileMap.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\TileMapView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing\DebugDraw.h">
+      <Filter>Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing\SpriteRenderer.h">
+      <Filter>Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\EntityShadowView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntitySprites.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\PlayerUseInputModel.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerUseInputController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityBounds.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityStats.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\IGameEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\PlayerEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityReferenceList.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\TargetDummyModel.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\TargetDummyEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityHitboxes.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerTargetController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\PlayerTargetView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityAnimation.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\FirepitFlameModel.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\FirepitFlameEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\FirepitFlameAnimationController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\FirepitFlamePowerView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2Utils.h" />
+    <ClInclude Include="Controllers\FlamePowerController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerHealthController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\ProgressBarViewBase.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\PlayerHealthView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\PlayerPowerView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerSkillActivationController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityAbilities.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\AbilityRegistry.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityAbilityCooldowns.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\EntityAbilityQueue.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerAbilityCooldownController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerAbilityQueueController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\PendingAbilityActions.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PendingAbilityActionsController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\CombatTextItems.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\CombatTextController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\CombatTextView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\AbilityIconMap.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\PlayerAbilityInterfaceView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\PlayerMoveAbilityCancelController.h">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\PlayerAbilityCastView.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

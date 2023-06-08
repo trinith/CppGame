@@ -1,0 +1,14 @@
+Elevator pitch: A 2D top-down pixel game where the core mechanic is surviving a cold environment by creating and maintaining areas of warmth. Collect basic raw materials and craft simple tools to survive a period of time.
+
+Possible theme: Plane crashes in the snowy mountains. Rescue is coming in one week's (month?) time. You must survive until it arrives.
+
+If asked, technical stuff...
+* Low-rez pixel art theme.
+* Simple sprites, possibly 8x8 though maaaaaaybe higher if needed.
+* Simple animated sprite implementation (likely vector of rectangles for individual sprites on a sprite sheet and the having a current frame to animate over those).
+* Simple tile map, possibly one screen though maybe panning as a stretch. Possibility of employing a quad tree for fun, but unlikely to be necessary.
+* Likely a RTS style control mechanism, clicking to move your character to a destination or interact with objects.
+* Simple pathfinding algorithm.
+* Frost effect likely achieved by a simple shader in combination with some foreground sprites.
+
+As an alternative (and probably simpler) control style, could do WASD so I didn't have to worry about any path finding. Could also be better for the player.
