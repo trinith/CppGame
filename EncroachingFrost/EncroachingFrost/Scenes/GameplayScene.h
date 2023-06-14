@@ -145,7 +145,7 @@ public:
 				RegisterView<PlayerHealthView>(_canvas.GetTarget(), _player.GetModel());
 				RegisterView<PlayerPowerView>(_canvas.GetTarget(), _player.GetModel());
 				RegisterView<PlayerAbilityCastView>(_canvas.GetTarget(), _player.GetModel());
-				RegisterView<PlayeAbilityInterfaceView>(_canvas, _player.GetModel(), *entitySprites, _player.GetModel().AbilityQueue, _player.GetModel().AbilityCooldowns, _assetManager.GetFonts());
+				RegisterView<PlayeAbilityInterfaceView>(_canvas, _player, *entitySprites, _assetManager.GetFonts());
 			}
 			RegisterView<GenericView>([&](const GhettoEngine::GameTime&) mutable { _canvas.GetTarget().display(); });
 			// Screen Space Views

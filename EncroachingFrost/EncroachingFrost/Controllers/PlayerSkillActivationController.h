@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Entities\EntityUtils.h>
 #include <Entities\PlayerEntity.h>
 #include <Game\ControllerBase.h>
 #include <Input\InputManager.h>
@@ -56,6 +57,13 @@ protected:
 					if (!validTarget)
 					{
 						std::cout << "Invalid target!" << std::endl;
+						continue;
+					}
+
+					// Check if we are in range.
+					if (EntityUtils::DistanceBetweenSpriteCentres(_playerEntity, *playerModel.Target) > ability.Range)
+					{
+						std::cout << "Could not initiate " << ability.Name << " cast, out of range." << std::endl;
 						continue;
 					}
 

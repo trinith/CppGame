@@ -123,6 +123,7 @@ xcopy $(SolutionDir)..\Vendor\SFML-2.5.1\bin\ $(OutDir) /E /Y</Command>
     <ClInclude Include="Controllers\PlayerUseInputController.h" />
     <ClInclude Include="Drawing\DebugDraw.h" />
     <ClInclude Include="Drawing\SpriteRenderer.h" />
+    <ClInclude Include="Entities\EntityUtils.h" />
     <ClInclude Include="Entities\FirepitFlameEntity.h" />
     <ClInclude Include="Entities\IGameEntity.h" />
     <ClInclude Include="Entities\PlayerEntity.h" />

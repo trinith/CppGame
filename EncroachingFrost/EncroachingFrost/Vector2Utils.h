@@ -10,15 +10,15 @@ std::ostream& operator<<(std::ostream& os, const sf::Vector2<T>& vector)
 }
 
 template <typename T>
-float VectorLength(const sf::Vector2<T>& vector)
-{
-    return sqrt(VectorLengthSquared(vector));
-}
-
-template <typename T>
 float VectorLengthSquared(const sf::Vector2<T>& vector)
 {
     return vector.x * vector.x + vector.y * vector.y;
+}
+
+template <typename T>
+float VectorLength(const sf::Vector2<T>& vector)
+{
+    return sqrt(VectorLengthSquared(vector));
 }
 
 template <typename T>

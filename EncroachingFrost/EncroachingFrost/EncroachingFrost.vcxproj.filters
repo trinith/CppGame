@@ -245,5 +245,8 @@
     <ClInclude Include="Views\PlayerAbilityCastView.h">
       <Filter>Views</Filter>
     </ClInclude>
+    <ClInclude Include="Entities\EntityUtils.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

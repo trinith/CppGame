@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Entities\EntityUtils.h>
 #include <Entities\PlayerEntity.h>
 #include <Game\ControllerBase.h>
 #include <Models\PendingAbilityActions.h>
@@ -34,31 +35,34 @@ protected:
 				{
 					const EntityAbility& ability = *abilityRef;
 
-					if (ability.Cost && _playerModel.Stats.Power && ability.Cost.value() > _playerModel.Stats.Power.value())
+					if (!_playerModel.Target)
+					{
+						std::cout << "Could not activate " << ability.Name << ", no target." << std::endl;
+						abilityQueue.CancelCurrentAction();
+					}
+					else if (EntityUtils::DistanceBetweenSpriteCentres(_playerEntity, *_playerModel.Target) > ability.Range)
+					{
+						std::cout << "Could not activate " << ability.Name << ", out of range." << std::endl;
+						abilityQueue.CancelCurrentAction();
+					}
+					else if (ability.Cost && _playerModel.Stats.Power && ability.Cost.value() > _playerModel.Stats.Power.value())
 					{
 						std::cout << "Could not activate " << ability.Name << ", not enough power." << std::endl;
 						abilityQueue.CancelCurrentAction();
 					}
 					else
 					{
-						// Activate the ability.
-						if (_playerModel.Target)
-						{
-							// Deduct the cost, if applicable.
-							if (_playerModel.Stats.Power && ability.Cost)
-								_playerModel.Stats.ModifyPower(-ability.Cost.value());
-
-							_pendingActions.Enqueue(ability, _playerEntity, *_playerModel.Target);
-							std::cout << "Activating: " << ability.Name << "." << std::endl;
-						}
-						else
-						{
-							std::cout << "Could not activate " << ability.Name << ", no target." << std::endl;
-						}
+						// Deduct the cost, if applicable.
+						if (_playerModel.Stats.Power && ability.Cost)
+							_playerModel.Stats.ModifyPower(-ability.Cost.value());
 
 						// Place the ability on cooldown
 						if (ability.Cooldown)
 							_playerModel.AbilityCooldowns.Cooldowns.emplace(entry.Id, ability.Cooldown.value());
+
+						// Ability can be activated.
+						_pendingActions.Enqueue(ability, _playerEntity, *_playerModel.Target);
+						std::cout << "Activating: " << ability.Name << "." << std::endl;
 
 						abilityQueue.Queue.pop();
 					}

@@ -4,6 +4,8 @@
 #include <SFML\Graphics\RenderTarget.hpp>
 #include <SFML\Graphics\Texture.hpp>
 
+// GT_TODO: I think this should not be a static but instead be instanced. It's a pain to reset state for different views.
+
 class SpriteRenderer
 {
 public:

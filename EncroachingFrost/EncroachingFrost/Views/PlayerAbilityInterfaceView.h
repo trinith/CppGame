@@ -2,34 +2,33 @@
 
 #include <Assets\AssetLoader.h>
 #include <Drawing\SpriteRenderer.h>
+#include <Entities\EntityUtils.h>
+#include <Entities\PlayerEntity.h>
 #include <Game\ViewBase.h>
 #include <Models\AbilityIconMap.h>
 #include <Models\RenderCanvas.h>
 #include <Models\EntityAbilityCooldowns.h>
 #include <Models\EntityAbilityQueue.h>
-#include <Models\PlayerModel.h>
 
 class PlayeAbilityInterfaceView : public GhettoEngine::ViewBase
 {
 public:
 	PlayeAbilityInterfaceView(
 		RenderCanvas& canvas,
-		const PlayerModel& playerModel,
+		const PlayerEntity& playerEntity,
 		const Assets::SpriteSheet& spriteSheet,
-		const EntityAbilityQueue& abilityQueue,
-		const EntityAbilityCooldowns& abilityCooldowns,
 		const const Assets::AssetManager::Fonts& fonts
 	)
 		: _canvas{ canvas }
-		, _playerModel{ playerModel }
+		, _playerEntity{ playerEntity }
 		, _spriteSheet{ spriteSheet }
-		, _abilityQueue{ abilityQueue }
-		, _abilityCooldowns{ abilityCooldowns }
 	{
+		const PlayerModel& playerModel{ _playerEntity.GetModel() };
+
 		// Size is 16 times the number of icons, plus one pixel of space in between each.
 		const sf::Vector2f size = sf::Vector2f
 		{
-			_playerModel.Abilities.size() * Constants::IconSize.x + (_playerModel.Abilities.size() - 1),
+			playerModel.Abilities.size() * Constants::IconSize.x + (playerModel.Abilities.size() - 1),
 			Constants::IconSize.y
 		};
 		_frameRect.setSize(size);
@@ -66,12 +65,18 @@ public:
 protected:
 	virtual void OnDraw(const GhettoEngine::GameTime&) override
 	{
+		SpriteRenderer::SetColour(sf::Color::White);
+
+		const PlayerModel& playerModel{ _playerEntity.GetModel() };
+		const EntityAbilityQueue& abilityQueue{ playerModel.AbilityQueue };
+		const EntityAbilityCooldowns& abilityCooldowns{ playerModel.AbilityCooldowns };
+
 		sf::RenderTarget& target = _canvas.GetTarget();
 		target.draw(_frameRect);
 
 		sf::Vector2f pos = _frameRect.getPosition();
 		size_t index = 1;
-		for (auto&& id : _playerModel.Abilities)
+		for (auto&& id : playerModel.Abilities)
 		{
 			if (const auto abilityRef = GlobalAbilityRegistry::Registry.GetAbility(id))
 			{
@@ -87,24 +92,20 @@ protected:
 				// Draw info overlay
 				_overlayRect.setFillColor(Constants::Colours::Empty);
 
-				if (_playerModel.Target)
+				if (_overlayRect.getFillColor() == Constants::Colours::Empty
+					&& ability.Cost
+					&& playerModel.Stats.Power
+					&& ability.Cost.value() > playerModel.Stats.Power.value())
 				{
-					sf::FloatRect playerRect{ _playerModel.Bounds.Position, _playerModel.Bounds.Size };
-					_playerModel.Hitboxes.ApplySpriteHitbox(playerRect);
-					sf::Vector2f playerCentre{ playerRect.left + playerRect.width / 2.f, playerRect.top + playerRect.height / 2.f };
-
-					const IGameEntity& targetEntity = *_playerModel.Target;
-					sf::FloatRect targetRect{ targetEntity.GetBounds().Position, targetEntity.GetBounds().Size };
-					targetEntity.GetHitboxes().ApplySpriteHitbox(targetRect);
-					sf::Vector2f targetCentre{ targetRect.left + targetRect.width / 2.f, targetRect.top + targetRect.height / 2.f };
-
-					const float distSquared = VectorLengthSquared(targetCentre - playerCentre);
-					if (distSquared > ability.Range * ability.Range)
-						_overlayRect.setFillColor(Constants::Colours::OverlayNoRange);
+					_overlayRect.setFillColor(Constants::Colours::OverlayNoPower);
 				}
 
-				if (_overlayRect.getFillColor() == Constants::Colours::Empty && ability.Cost && _playerModel.Stats.Power && ability.Cost.value() > _playerModel.Stats.Power.value())
-					_overlayRect.setFillColor(Constants::Colours::OverlayNoPower);
+				if (_overlayRect.getFillColor() == Constants::Colours::Empty
+					&& playerModel.Target
+					&& EntityUtils::DistanceBetweenSpriteCentres(_playerEntity, *playerModel.Target) > ability.Range)
+				{
+					_overlayRect.setFillColor(Constants::Colours::OverlayNoRange);
+				}
 
 				if (_overlayRect.getFillColor() != Constants::Colours::Empty)
 				{
@@ -117,7 +118,7 @@ protected:
 				_overlayRect.setFillColor(Constants::Colours::OverlayOnCD);
 
 				std::optional<float> fillPercent;
-				if (const auto findResult = _abilityCooldowns.Cooldowns.find(id); findResult != _abilityCooldowns.Cooldowns.end())
+				if (const auto findResult = abilityCooldowns.Cooldowns.find(id); findResult != abilityCooldowns.Cooldowns.end())
 				{
 					// Ability is on CD
 					if (ability.Cooldown)
@@ -125,7 +126,7 @@ protected:
 				}
 
 				if (!fillPercent)
-					fillPercent = _abilityQueue.GCD / EntityAbilityQueue::Constants::GCD;
+					fillPercent = abilityQueue.GCD / EntityAbilityQueue::Constants::GCD;
 
 				_overlayRect.setSize(sf::Vector2f{ Constants::IconSize.x, Constants::IconSize.y * fillPercent.value() });
 				_overlayRect.setPosition(sf::Vector2f{ pos.x, pos.y + _frameRect.getSize().y - _overlayRect.getSize().y });
@@ -163,10 +164,8 @@ private:
 	};
 
 	RenderCanvas& _canvas;
-	const PlayerModel& _playerModel;
+	const PlayerEntity& _playerEntity;
 	const Assets::SpriteSheet& _spriteSheet;
-	const EntityAbilityQueue& _abilityQueue;
-	const EntityAbilityCooldowns& _abilityCooldowns;
 
 	sf::RectangleShape _frameRect;
 	sf::RectangleShape _sepRect;
